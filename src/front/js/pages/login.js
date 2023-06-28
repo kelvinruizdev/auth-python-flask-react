@@ -1,28 +1,63 @@
 import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 
-	return (
-		<div className="jumbotron">
-			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
-			<img src={rigoImageUrl} />
-			<hr className="my-4" />
+	const [login, setLogin] = useState({
+		email: "",
+		password: "",
+	});
 
-			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
-					Back home
-				</span>
-			</Link>
+	const handleChange = ({ target }) => {
+		setLogin({
+			...login,
+			[target.name]: target.value,
+		});
+	};
+
+	const sendLogin = (data) => {
+		actions.login(data);
+	};
+
+	return (
+		<div className="container">
+			<div className="row justify-content-center">
+				<div className="col-12 col-md-6">
+					<h1 className="text-center"> LOGIN </h1>
+					<form className="p-3">
+						<div className="form-group p-1">
+							<input
+								className="form-control"
+								placeholder="email"
+								type="text"
+								onChange={handleChange}
+								name="email"
+							/>
+						</div>
+						<div className="form-group p-1">
+							<input
+								className="form-control"
+								placeholder="password"
+								type="password"
+								onChange={handleChange}
+								name="password"
+							/>
+						</div>
+						<div className="form-group p-1">
+							<button
+								className="btn btn-success w-100"
+								type="button"
+								onClick={() => sendLogin(login)}
+							>
+								Login
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
-};
-
-Single.propTypes = {
-	match: PropTypes.object
 };
