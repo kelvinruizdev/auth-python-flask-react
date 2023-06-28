@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null
+			token: localStorage.getItem("token") || null,
+			login: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -21,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						token: responseData.token,
 					});
 					localStorage.setItem("token", responseData.token);
+					store.login = true
 				} catch (err) {
 					console.log(err)
 				}
@@ -35,6 +37,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify(data)
 					})
+				} catch (err) {
+					console.log(err)
+				}
+			},
+
+			logout: () => {
+				try {
+					localStorage.removeItem('token');
 				} catch (err) {
 					console.log(err)
 				}
