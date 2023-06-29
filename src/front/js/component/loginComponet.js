@@ -24,37 +24,41 @@ export const LoginComponent = () => {
 	};
 
 	return (
-		<div className="col-12 col-md-6">
-			<h1 className="text-center"> LOGIN </h1>
-			<form className="p-3">
-				<div className="form-group p-1">
-					<input
-						className="form-control"
-						placeholder="email"
-						type="text"
-						onChange={handleChange}
-						name="email"
-					/>
+		<div className="container">
+			<div className="row justify-content-center">
+				<div className="col-12 col-md-6">
+					<h1 className="text-center"> LOGIN </h1>
+					<form className="p-3">
+						<div className="form-group p-1">
+							<input
+								className="form-control"
+								placeholder="email"
+								type="text"
+								onChange={handleChange}
+								name="email"
+							/>
+						</div>
+						<div className="form-group p-1">
+							<input
+								className="form-control"
+								placeholder="password"
+								type="password"
+								onChange={handleChange}
+								name="password"
+							/>
+						</div>
+						<div className="form-group p-1">
+							<button
+								className="btn btn-success w-100"
+								type="button"
+								onClick={() => sendLogin(login)}
+							>
+								Login
+							</button>
+						</div>
+					</form>
 				</div>
-				<div className="form-group p-1">
-					<input
-						className="form-control"
-						placeholder="password"
-						type="password"
-						onChange={handleChange}
-						name="password"
-					/>
-				</div>
-				<div className="form-group p-1">
-					<button
-						className="btn btn-success w-100"
-						type="button"
-						onClick={() => sendLogin(login)}
-					>
-						Login
-					</button>
-				</div>
-			</form>
+			</div>
 		</div>
 	);
 }
