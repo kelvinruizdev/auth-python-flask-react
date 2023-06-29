@@ -15,7 +15,7 @@ export const Login = () => {
 		<div className="container">
 			<div className="row justify-content-center">
 				{
-					store.token
+					store.token != undefined && store.token
 						?
 						<Private />
 						:

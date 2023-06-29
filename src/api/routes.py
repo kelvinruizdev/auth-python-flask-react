@@ -57,13 +57,3 @@ def login():
                 else:
                     return jsonify({"message": "Bad credentials"}), 400
                 
-@api.route("/private", methods=["GET"])
-@jwt_required()
-def get_all_users():
-    if request.method == "GET":
-        user = User.query.get(get_jwt_identity())
-        if user.email == "deimianvasquez@gmail.com":
-            all_user = User.query.all()
-            return jsonify(list(map(lambda item: item.serialize(), all_user)))
-        else:
-            return jsonify("no autorizado"), 401
